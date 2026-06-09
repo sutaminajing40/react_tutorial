@@ -1,0 +1,384 @@
+.movie-detail-root {
+    min-height: 100vh;
+    background: #111;
+    color: #fff;
+    position: relative;
+}
+
+.movie-detail-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70vh;
+    z-index: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.4;
+}
+
+.movie-detail-backdrop-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70vh;
+    z-index: 1;
+    background: linear-gradient(to top, #111 60%, transparent 100%);
+}
+
+.movie-detail-container {
+    position: relative;
+    z-index: 2;
+    width: 100vw;
+    max-width: 100vw;
+    margin: 0;
+    padding: 48px 16px 0 16px;
+    box-sizing: border-box;
+    padding: 0 100px;
+}
+
+.movie-detail-backlink {
+    display: inline-flex;
+    align-items: center;
+    color: #fff8;
+    margin-bottom: 24px;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.movie-detail-backlink:hover {
+    color: #fff;
+}
+
+.movie-detail-backlink-icon {
+    margin-right: 8px;
+}
+
+.movie-detail-grid {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.movie-detail-poster-wrap {
+    position: relative;
+    aspect-ratio: 2/3;
+    width: 300px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px #000a;
+}
+
+.movie-detail-poster-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.movie-detail-loading {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.movie-detail-info {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.movie-detail-details {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.movie-detail-overview {
+    color: #ccc;
+    line-height: 1.7;
+}
+
+.movie-detail-section {
+    border-top: 1px solid #222;
+    padding-top: 24px;
+    margin-top: 24px;
+}
+
+.movie-detail-section-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.movie-detail-cast-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.movie-detail-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.badge-icon-svg {
+    margin-right: 2px;
+    vertical-align: middle;
+}
+
+.badge-star {
+    color: #ffb400;
+    fill: #ffb400;
+}
+
+.movie-detail-overview {
+    color: #ccc;
+    line-height: 1.7;
+}
+
+.movie-detail-genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.movie-detail-actions {
+    display: flex;
+    gap: 16px;
+    padding-top: 8px;
+}
+
+.movie-detail-btn {
+    font-size: 16px;
+    border-radius: 6px;
+    padding: 10px 22px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    background: #444;
+    color: #fff;
+    transition: background 0.2s, color 0.2s;
+}
+
+.movie-detail-btn-primary {
+    background: #e11d48;
+    color: #fff;
+}
+
+.movie-detail-btn:hover {
+    background: #666;
+    color: #fff;
+}
+
+.movie-detail-btn-primary:hover {
+    background: #be123c;
+    color: #fff;
+}
+
+.movie-detail-btn-icon {
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.badge-outline {
+    display: inline-block;
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 2px 10px;
+    font-size: 13px;
+    color: #fff;
+    background: transparent;
+}
+
+.badge-genre {
+    display: inline-block;
+    background: #222;
+    border-radius: 6px;
+    padding: 2px 10px;
+    font-size: 13px;
+    color: #fff;
+}
+
+.movie-detail-btn {
+    font-size: 16px;
+    border-radius: 6px;
+    padding: 10px 22px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    background: #444;
+    color: #fff;
+    transition: background 0.2s, color 0.2s;
+}
+
+.movie-detail-btn-primary {
+    background: #e11d48;
+    color: #fff;
+}
+
+.movie-detail-btn:hover {
+    background: #666;
+    color: #fff;
+}
+
+.movie-detail-btn-primary:hover {
+    background: #be123c;
+    color: #fff;
+}
+
+.movie-detail-actions {
+    display: flex;
+    gap: 16px;
+    padding-top: 8px;
+}
+
+.movie-detail-btn-icon {
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.movie-detail-rating {
+    background: #292929;
+    color: #ffb400;
+    font-weight: 600;
+}
+
+.movie-detail-score {
+    background: none;
+    color: #ffb400;
+    font-weight: 700;
+    font-size: 1.1em;
+    padding: 0;
+}
+
+.movie-detail-genres {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+
+.movie-detail-genre {
+    background: #232323;
+    color: #eee;
+    border-radius: 8px;
+    padding: 4px 14px;
+    font-size: 0.99rem;
+    margin-bottom: 2px;
+}
+
+.movie-detail-overview {
+    font-size: 1.13rem;
+    line-height: 1.7;
+    color: #e0e0e0;
+    margin-bottom: 18px;
+}
+
+.movie-detail-actions {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.movie-detail-btn {
+    background: #232323;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 11px 28px;
+    font-size: 1.07rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.16s, color 0.16s, box-shadow 0.18s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.movie-detail-btn-primary {
+    background: #e50914;
+    color: #fff;
+    box-shadow: 0 2px 12px rgba(229, 9, 20, 0.22);
+}
+
+.movie-detail-btn:hover {
+    background: #333;
+}
+
+.movie-detail-btn-primary:hover {
+    background: #b0060f;
+}
+
+.movie-detail-cast-block {
+    margin-bottom: 6px;
+}
+
+.movie-detail-cast-label {
+    color: #bbb;
+    font-size: 1.02rem;
+    margin-bottom: 4px;
+}
+
+.movie-detail-cast-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.movie-detail-cast-tag {
+    background: #222;
+    color: #fff;
+    border-radius: 7px;
+    padding: 3px 12px;
+    font-size: 0.97rem;
+}
+
+.movie-detail-director-block {
+    margin-bottom: 2px;
+}
+
+.movie-detail-director-label {
+    color: #bbb;
+    font-size: 1.02rem;
+    margin-bottom: 3px;
+}
+
+.movie-detail-director-name {
+    color: #fff;
+    font-size: 1.09rem;
+}
+
+@media (max-width: 900px) {
+    .movie-detail-main {
+        flex-direction: column;
+        align-items: center;
+        padding: 0 0 36px 0;
+        max-width: 97vw;
+    }
+
+    .movie-detail-poster-col {
+        padding: 28px 0 12px 0;
+        min-width: 0;
+        width: 100%;
+    }
+
+    .movie-detail-info-col {
+        padding: 22px 12px 32px 12px;
+        gap: 12px;
+    }
+
+    .movie-detail-poster {
+        width: 80vw;
+        max-width: 340px;
+        height: auto;
+    }
+}
