@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# AI commit review hook.
+# Fires after every commit and kicks off the review in the BACKGROUND,
+# so `git commit` returns instantly.
+#
+# Enable once with:
+#   git config core.hooksPath .githooks
+#   chmod +x .githooks/post-commit scripts/ai-review.sh
+set -u
+
+ROOT="$(git rev-parse --show-toplevel)"
+
+# Skip merge commits (they have a 2nd parent) — too noisy to review.
+if git rev-parse -q --verify HEAD^2 >/dev/null 2>&1; then
+  exit 0
+fi
+
+SHA="$(git rev-parse HEAD)"
+
+# Detach so the commit command does not wait for the review.
+nohup "$ROOT/scripts/ai-review.sh" "$SHA" >/dev/null 2>&1 &
+
+exit 0
