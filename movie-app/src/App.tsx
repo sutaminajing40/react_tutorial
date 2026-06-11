@@ -66,6 +66,7 @@ function App() {
     "1ヵ月後に1000年ぶりの彗星が訪れる日本。東京で暮らす平凡な男子高校生・瀧と、山深い村で都会の生活に憧れながら憂鬱な日々を送る女子高校生・三葉。つながりのない2人は、互いが入れ替わる不思議な夢を見る。";
   const heroImage =
     "https://media.themoviedb.org/t/p/w300_and_h450_bestv2/yLglTwyFOUZt5fNKm0PWL1PK5gm.jpg";
+  const heroId = "372058"
 
   return (
     <div>
@@ -88,9 +89,11 @@ function App() {
             <button className="hero-section-btn hero-section-btn-primary">
               ▶ Play
             </button>
-            <button className="hero-section-btn hero-section-btn-secondary">
+            <Link
+              to={`/movies/${heroId}`}
+              className="hero-section-btn hero-section-btn-secondary">
               More Info
-            </button>
+            </Link>
           </div>
         </div>
       </section>
