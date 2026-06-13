@@ -1,30 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import "./App.css";
-
-type Movie = {
-  id: number;
-  original_title: string;
-  poster_path: string;
-  overview: string;
-};
-
-type MovieJson = {
-  adult: boolean;
-  backdrop_path: string;
-  genre_ids: number[];
-  id: number;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  release_date: string;
-  title: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-};
+import type { MovieJson } from "./types/movieJson";
+import type { Movie } from "./types/movie";
 
 function App() {
   const fetchMovieList = async () => {
