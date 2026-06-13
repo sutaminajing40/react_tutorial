@@ -35,6 +35,7 @@ Notion 記事でいう Lv1 はクリア済み。この本で埋めるのは Lv2 
 3. [第3章 構成・REST クライアント・型を整える](./03_architecture.md)
 4. [第4章 Vitest + Testing Library でテストする](./04_testing.md)
 5. [第5章（別枠）Apollo Client / GraphQL 入門](./05_apollo-graphql.md)
+6. [第6章（発展）Rails で GraphQL API を作り、フロントとつなぐ](./06_rails-graphql.md)
 
 ## 前提バージョンの注意
 
@@ -67,4 +68,4 @@ Notion 記事でいう Lv1 はクリア済み。この本で埋めるのは Lv2 
 
 ## 進め方
 
-第1章 → 第4章を順番に。第5章（Apollo）は TMDB が REST のため映画アプリでは練習しづらいので、気が向いたとき独立して触れば OK。
+第1章 → 第4章を順番に。第5章（Apollo）は TMDB が REST のため映画アプリでは練習しづらいので、気が向いたとき独立して触れば OK。第6章（Rails で GraphQL）は **Rails チュートリアルを終えてから**取り組む発展章で、フロントとバックを GraphQL でつなぐ「フルスタック一周」を扱う。

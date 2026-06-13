@@ -577,7 +577,9 @@ export default CharacterDetail;
 
 ## おわりに
 
-第1〜4章で、お気に入り機能を通じて **状態管理（Zustand）・ルーティング（Data Router）・構成と型・テスト** という Lv2 のコアを一通り体験しました。第5章で GraphQL の感覚もつかみました。
+第1〜4章で、お気に入り機能を通じて **状態管理（Zustand）・ルーティング（Data Router）・構成と型・テスト** という Lv2 のコアを一通り体験しました。第5章で GraphQL を**使う側**の感覚もつかみました。
+
+次は発展として、GraphQL を**作る側**へ。[第6章](./06_rails-graphql.md) で Rails の GraphQL API を自分で作り、movie-app のフロントとつなぎます（**Rails チュートリアルを終えてから**取り組んでください）。ここまでやると Zext の構成 **Rails ← GraphQL → React** を自分の手で一周できます。
 
 ここまで来たら、あとは:
 
