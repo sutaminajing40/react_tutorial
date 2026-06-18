@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import "./MovieDetail.css";
 import { ArrowLeft, Clock, Star } from "lucide-react";
+import { useFavoritesMoviesStore } from "./stores/favorites";
 
 type MovieDetailJson = {
     adult: boolean;
@@ -59,6 +60,10 @@ type Movie = {
 function MovieDetail() {
     const { id } = useParams();
     const [movie, setMovie] = useState<Movie | null>(null);
+    const toggle = useFavoritesMoviesStore(s => s.toggle);
+    const isFav = useFavoritesMoviesStore((s) =>
+        movie ? s.isFavorite(Number(movie.id)) : false
+    );
 
     const fetchMovieDetail = async () => {
         const response = await fetch(
@@ -143,8 +148,16 @@ function MovieDetail() {
                                     <button className="movie-detail-btn movie-detail-btn-primary">
                                         ▶ Watch Now
                                     </button>
-                                    <button className="movie-detail-btn">
-                                        ＋ Add to My List
+                                    <button
+                                        className="movie-detail-btn"
+                                        onClick={() => {
+                                            toggle({
+                                                id: Number(movie.id),
+                                                title: movie.original_title,
+                                                posterPath: movie.poster_path
+                                            })
+                                        }}>
+                                        {isFav ? "✓ My List" : "＋ Add to My List"}
                                     </button>
                                 </div>
                             </div>
