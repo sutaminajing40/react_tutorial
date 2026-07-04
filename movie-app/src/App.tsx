@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import "./App.css";
 import type { MovieJson } from "./types/movieJson";
 import type { Movie } from "./types/movie";
+import { useFavoritesMoviesStore } from "./stores/favorites";
 
 function App() {
   const fetchMovieList = async () => {
@@ -32,6 +33,9 @@ function App() {
 
   const [keyword, setKeyword] = useState("");
   const [movieList, setMovieList] = useState<Movie[]>([]);
+
+  const toggle = useFavoritesMoviesStore(s => s.toggle);
+  const isFavorite = useFavoritesMoviesStore(s => s.isFavorite);
 
   useEffect(() => {
     fetchMovieList();
@@ -80,28 +84,41 @@ function App() {
           {keyword ? `「${keyword}」の検索結果` : "人気映画"}
         </h2>
         <div className="movie-row-scroll">
-          {movieList.map((movie) => (
-            <Link
-              key={movie.id}
-              to={`/movies/${movie.id}`}
-              className="movie-card"
-            >
-              <div className="movie-card__imgwrap">
-                <img
-                  src={
-                    movie.poster_path
-                      ? `https://image.tmdb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`
-                      : "https://via.placeholder.com/300x450?text=No+Image"
-                  }
-                  alt={movie.original_title}
-                  className="movie-card__image"
-                />
-                <div className="movie-card__overlay">
-                  <h3 className="movie-card__title">{movie.original_title}</h3>
+          {movieList.map((movie) => {
+            const isFav = isFavorite(Number(movie.id));
+            return <div className="movie-card" key={movie.id}>
+              <Link
+                to={`/movies/${movie.id}`}
+                className="movie-card__link"
+              >
+                <div className="movie-card__imgwrap">
+                  <img
+                    src={
+                      movie.poster_path
+                        ? `https://image.tmdb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`
+                        : "https://via.placeholder.com/300x450?text=No+Image"
+                    }
+                    alt={movie.original_title}
+                    className="movie-card__image"
+                  />
+                  <div className="movie-card__overlay">
+                    <h3 className="movie-card__title">{movie.original_title}</h3>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+              <button
+                className="movie-card-favorite"
+                onClick={() => {
+                  toggle({
+                    id: Number(movie.id),
+                    title: movie.original_title,
+                    posterPath: movie.poster_path
+                  })
+                }}>
+                {isFav ? "♥" : "♡"}
+              </button>
+            </div>
+          })}
         </div>
       </section>
       <div className="app-search-wrap">
