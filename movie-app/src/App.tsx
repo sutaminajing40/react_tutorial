@@ -35,7 +35,7 @@ function App() {
   const [movieList, setMovieList] = useState<Movie[]>([]);
 
   const toggle = useFavoritesMoviesStore(s => s.toggle);
-  const isFavorite = useFavoritesMoviesStore(s => s.isFavorite);
+  const favorites = useFavoritesMoviesStore(s => s.favorites);
 
   useEffect(() => {
     fetchMovieList();
@@ -85,7 +85,7 @@ function App() {
         </h2>
         <div className="movie-row-scroll">
           {movieList.map((movie) => {
-            const isFav = isFavorite(Number(movie.id));
+            const isFav = favorites.some(f => f.id === movie.id);
             return <div className="movie-card" key={movie.id}>
               <Link
                 to={`/movies/${movie.id}`}
