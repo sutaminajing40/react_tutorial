@@ -10,3 +10,4 @@ dist/
 # os / progress
 .DS_Store
 .progress/
+.__wtest

@@ -1,0 +1,10 @@
+.app-nav {
+    display: flex;
+    gap: 16px
+}
+
+/* Header.css に追加 */
+.app-nav a.active {
+  font-weight: bold;
+  border-bottom: 2px solid white;
+}

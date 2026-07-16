@@ -4,17 +4,21 @@ import { createBrowserRouter, RouterProvider } from 'react-router'
 import './index.css'
 import App from './App.tsx'
 import MovieDetail from './MovieDetail.tsx'
-import Header from './Header.tsx'
+import Favorites from './Favorites.tsx'
+import Layout from './Layout.tsx'
 
 const router = createBrowserRouter([
-  { path: "/", Component: App },
-  { path: "/movies/:id", Component: MovieDetail },
+  {
+    path: "/", Component: Layout, children: [
+      { path: "/", Component: App },
+      { path: "/movies/:id", Component: MovieDetail },
+      { path: "/favorites", Component: Favorites }
+    ]
+  }
 ]);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Header>
-      <RouterProvider router={router} />
-    </Header>
+    <RouterProvider router={router} />
   </StrictMode>,
 )
