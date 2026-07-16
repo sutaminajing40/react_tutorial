@@ -6,11 +6,12 @@ import App from './App.tsx'
 import MovieDetail from './MovieDetail.tsx'
 import Favorites from './Favorites.tsx'
 import Layout from './Layout.tsx'
+import moviesLoader
 
 const router = createBrowserRouter([
   {
     path: "/", Component: Layout, children: [
-      { path: "/", Component: App },
+      { path: "/", Component: App, loader: moviesLoader},
       { path: "/movies/:id", Component: MovieDetail },
       { path: "/favorites", Component: Favorites }
     ]

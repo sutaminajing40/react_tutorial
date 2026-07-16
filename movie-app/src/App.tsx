@@ -5,6 +5,11 @@ import type { MovieJson } from "./types/movieJson";
 import type { Movie } from "./types/movie";
 import { useFavoritesMoviesStore } from "./stores/favorites";
 
+
+export const moviesLoader = ({ request }: LoaderFunctionArgs)) => (
+  
+);
+
 function App() {
   const fetchMovieList = async () => {
     const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -31,15 +36,17 @@ function App() {
     setMovieList(movieList);
   };
 
+  export const moviesLoader = () => fetchMovieList();
+
   const [keyword, setKeyword] = useState("");
   const [movieList, setMovieList] = useState<Movie[]>([]);
 
   const toggle = useFavoritesMoviesStore(s => s.toggle);
   const favorites = useFavoritesMoviesStore(s => s.favorites);
 
-  useEffect(() => {
-    fetchMovieList();
-  }, [keyword]);
+  // useEffect(() => {
+  //   fetchMovieList();
+  // }, [keyword]);
 
   // HeroSection用のダミーデータ（君の名は）
   const heroTitle = "君の名は";
