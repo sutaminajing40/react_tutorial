@@ -1,52 +1,49 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import "./App.css";
 import type { MovieJson } from "./types/movieJson";
 import type { Movie } from "./types/movie";
 import { useFavoritesMoviesStore } from "./stores/favorites";
+import { type LoaderFunctionArgs } from "react-router";
 
 
-export const moviesLoader = ({ request }: LoaderFunctionArgs)) => (
-  
-);
+
+export const moviesLoader = async ({ request }: LoaderFunctionArgs) => {
+  const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+  const url = new URL(request.url);
+  const keyword = url.searchParams.get("query") ?? "";
+
+  let fetchUrl = "";
+  if (keyword) {
+    fetchUrl = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(
+      keyword
+    )}&include_adult=false&language=ja&page=1`;
+  } else {
+    fetchUrl = "https://api.themoviedb.org/3/movie/popular?language=ja&page=1";
+  }
+
+  const response = await fetch(fetchUrl, {
+    headers: {
+      Authorization: `Bearer ${API_KEY}`,
+    },
+  });
+
+  const data = await response.json();
+  const result = data.results;
+
+  const movieList: Movie[] = result.map((movie: MovieJson) => ({
+    id: movie.id,
+    original_title: movie.title,
+    poster_path: movie.poster_path,
+  }));
+
+  return { movieList, keyword };
+};
 
 function App() {
-  const fetchMovieList = async () => {
-    const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
-    let url = "";
-    if (keyword) {
-      url = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(
-        keyword
-      )}&include_adult=false&language=ja&page=1`;
-    } else {
-      url = "https://api.themoviedb.org/3/movie/popular?language=ja&page=1";
-    }
-    const response = await fetch(url, {
-      headers: {
-        Authorization: `Bearer ${API_KEY}`,
-      },
-    });
-    const data = await response.json();
-    const result = data.results;
-    const movieList = result.map((movie: MovieJson) => ({
-      id: movie.id,
-      original_title: movie.title,
-      poster_path: movie.poster_path,
-    }));
-    setMovieList(movieList);
-  };
-
-  export const moviesLoader = () => fetchMovieList();
-
-  const [keyword, setKeyword] = useState("");
-  const [movieList, setMovieList] = useState<Movie[]>([]);
+  const { movieList, keyword } = useLoaderData();
 
   const toggle = useFavoritesMoviesStore(s => s.toggle);
   const favorites = useFavoritesMoviesStore(s => s.favorites);
-
-  // useEffect(() => {
-  //   fetchMovieList();
-  // }, [keyword]);
 
   // HeroSection用のダミーデータ（君の名は）
   const heroTitle = "君の名は";
@@ -134,7 +131,7 @@ function App() {
           className="app-search"
           placeholder="映画タイトルで検索..."
           value={keyword}
-          onChange={(e) => setKeyword(e.target.value)}
+          // onChange={(e) => setKeyword(e.target.value)}
         />
       </div>
     </div>
